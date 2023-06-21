@@ -1,0 +1,23 @@
+.header-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.main-content-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2em;
+  justify-items: center;
+}
+
+.meme-canvas {
+  border: 2px solid green;
+  justify-self: end;
+}
+
+
+.image{
+  width: 150px;
+  /* height: 50px; */
+}

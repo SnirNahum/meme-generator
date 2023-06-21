@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Mame Generator</title>
+  </head>
+  <body onload="onInit()">
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">Logo</div>
+        <div class="links">
+          <ul class="links ul">
+            <li>Gallery</li>
+            <li>Memes</li>
+            <li>About</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="main-content">
+      <div class="main-content-container">
+        <canvas class="meme-canvas" height="450" width="450"></canvas>
+        <div class="meme-toolbar">
+          <input type="text" class="text" oninput="onDrawText(this.value)" ></input>
+        </div>
+      </div>
+      <section class="gallery-page">
+        <div class="gallery-container"></div>
+      </section>
+      <section class="memes-page"></section>
+      <section class="about-page"></section>
+    </main>
+
+    <script src="js/meme-controller/meme-controller.js"></script>
+    <script src="js/meme-service/meme-service.js"></script>
+    <script src="js/images-controller/image-contoller.js"></script>
+    <script src="js/meme-controller/untils/untils.js"></script>
+  </body>
+</html>
