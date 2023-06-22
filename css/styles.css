@@ -1,20 +1,29 @@
-.header-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  height: 5em;
-  align-items: center;
-  /* margin-top: 3em; */
+html {
+  background-color: #5a6970;
+  color: rgb(211, 223, 221);
 }
 
-.main-content-container {
+.header-container {
   display: grid;
-  grid-template-columns: 2.2fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 5em;
+  align-items: center;
+
+  /* margin-top: 3em; */
+}
+.main-content{
+  display: flex;
+}
+.main-content-container {
+  display: flex;
+  justify-content: center;
+  /* grid-template-columns: 2fr 1fr; */
   gap: 2em;
-  justify-items: center;
+  
 }
 .links-ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0;
 }
 .links-li,
@@ -25,12 +34,13 @@
 }
 .meme-canvas {
   border: 2px solid green;
-  justify-self: end;
+  justify-content: center;
 }
 
 .meme-toolbar {
   display: grid;
   align-content: center;
+  gap: 10px;
   /* align-content: start; */
 }
 
@@ -55,9 +65,9 @@
   cursor: pointer;
 }
 
-.download-btn{
+.download-btn {
   align-self: flex-end;
 }
-.toolbar-toolbar-a{
+.toolbar-toolbar-a {
   display: none;
 }

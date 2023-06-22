@@ -20,15 +20,15 @@
         </div>
       </div>
     </header>
-    <main class="main-content" style="display: block;">
+    <main class="main-content" style="display: none;">
       <div class="main-content-container">
         <canvas class="meme-canvas" height="450" width="450"></canvas>
         <div class="meme-toolbar">
           <div class="input-container">
-          <input type="text" class="text-0" placeholder="Enter text" oninput="onDrawText(this.value)" />
+          <input type="text" class="text-0" placeholder="Enter text" oninput="onDrawText(this.value,0)" value="" />
         </div>
-          <button class="button add-line" onclick="onAddLine(this,event)">Add line</button>
-          <!-- <button class="toolbar-toolbar-icons" onclick="onChangeColor()"><i class="fa-solid fa-palette"></i><label></i></button> -->
+        <button class="button add-line" onclick="onAddLine()">add line</button>
+        <button class="button switch-lines" onclick="onSwitchLines()">Switch lines</button>
             <input onchange="onChangeTextColor(this.value)" type="color" name="form color-text"
             value="#ffffff">
             <input onclick="onChangeTextSize(this.value)" type="button" name="form color-text"
@@ -40,7 +40,7 @@
       </div>
 
     </main>
-    <div class="gallery-page" style="display: none;">
+    <div class="gallery-page" style="display: block;">
       <div class="gallery-container"></div>
     </div>
       <section class="memes-page"></section>
