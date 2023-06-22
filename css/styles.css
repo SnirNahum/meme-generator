@@ -1,23 +1,63 @@
 .header-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 5em;
   align-items: center;
+  /* margin-top: 3em; */
 }
 
 .main-content-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2.2fr 1fr;
   gap: 2em;
   justify-items: center;
 }
-
+.links-ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.links-li,
+.logo {
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+}
 .meme-canvas {
   border: 2px solid green;
   justify-self: end;
 }
 
+.meme-toolbar {
+  display: grid;
+  align-content: center;
+  /* align-content: start; */
+}
 
-.image{
-  width: 150px;
-  /* height: 50px; */
+.gallery-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 10px;
+  margin: 0 auto;
+
+  max-width: 500px;
+}
+
+.image {
+  width: 100px;
+}
+
+.toolbar {
+  font-size: 2em;
+  max-width: fit-content;
+  cursor: pointer;
+}
+
+.download-btn{
+  align-self: flex-end;
+}
+.toolbar-toolbar-a{
+  display: none;
 }

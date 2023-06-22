@@ -4,35 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    
     <title>Mame Generator</title>
   </head>
   <body onload="onInit()">
     <header class="header">
       <div class="header-container">
-        <div class="logo">Logo</div>
-        <div class="links">
-          <ul class="links ul">
-            <li>Gallery</li>
-            <li>Memes</li>
-            <li>About</li>
+        <div class="logo" onclick="managePageDisplay(this)">Logo</div>
+        <div class="links links">
+          <ul class="links links-ul">
+            <li class="links-li memes" onclick="managePageDisplay(this)">Memes</li>
+            <li class="links-li gallery" onclick="managePageDisplay(this)">Gallery</a></li>
+            <li class="links-li memes" onclick="managePageDisplay(this)">About</li>
           </ul>
         </div>
       </div>
     </header>
-    <main class="main-content">
+    <main class="main-content" style="display: block;">
       <div class="main-content-container">
         <canvas class="meme-canvas" height="450" width="450"></canvas>
         <div class="meme-toolbar">
-          <input type="text" class="text" oninput="onDrawText(this.value)" ></input>
+          <div class="input-container">
+          <input type="text" class="text-0" placeholder="Enter text" oninput="onDrawText(this.value)" />
+        </div>
+          <button class="button add-line" onclick="onAddLine(this,event)">Add line</button>
+          <!-- <button class="toolbar-toolbar-icons" onclick="onChangeColor()"><i class="fa-solid fa-palette"></i><label></i></button> -->
+            <input onchange="onChangeTextColor(this.value)" type="color" name="form color-text"
+            value="#ffffff">
+            <input onclick="onChangeTextSize(this.value)" type="button" name="form color-text"
+            value="A+">
+            <input onclick="onChangeTextSize(this.value)" type="button" name="form color-text"
+            value="A-">
+          <a href="#"  onclick="downloadCanvas(this)" download="Meme"><button class="toolbar download-btn">Download</button></a>
         </div>
       </div>
-      <section class="gallery-page">
-        <div class="gallery-container"></div>
-      </section>
+
+    </main>
+    <div class="gallery-page" style="display: none;">
+      <div class="gallery-container"></div>
+    </div>
       <section class="memes-page"></section>
       <section class="about-page"></section>
-    </main>
-
+    
+      <script
+      src="https://kit.fontawesome.com/8c9e05cd03.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="js/meme-controller/meme-controller.js"></script>
     <script src="js/meme-service/meme-service.js"></script>
     <script src="js/images-controller/image-contoller.js"></script>
