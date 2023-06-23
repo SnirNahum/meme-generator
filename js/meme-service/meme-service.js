@@ -2,6 +2,9 @@ var globalId = 0;
 var gImgs = createImages();
 var gMeme;
 
+var isDragging = false;
+var startX, startY;
+
 function createImages() {
   var imgs = [];
   for (var i = 0; i <= 20; i++) {
@@ -25,8 +28,8 @@ function getCurrMeme(image) {
     lines: [
       {
         txt: "",
-        size: 20,
-        color: gCurrColor,
+        size: 30,
+        color: "white",
         x: 225,
         y: 50,
       },
@@ -37,33 +40,45 @@ function getCurrMeme(image) {
   managePageDisplay("Memes");
 }
 
-function drawText(text) {
-  console.log(gMeme);
-  console.log(gCurrLine);
-  var { x, y } = gMeme.lines[gCurrLine];
-  // var currLine = gMeme.selectedLineIdx;
-  // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+function drawText() {
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+
+  var { color, txt, size, x, y } = gMeme.lines[gCurrLine];
+
   gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
 
   gCtx.lineWidth = 2;
-  gCtx.strokeStyle = gCurrColor;
-  gCtx.fillStyle = gCurrColor;
-  gCtx.font = `${gCurrTextSize}px Arial`;
   gCtx.textAlign = "center";
   gCtx.textBaseline = "middle";
 
-  gMeme.lines[gMeme.selectedLineIdx].txt = text;
+  gCtx.font = `${size}px Arial`;
 
-  getText(x, y);
+  var textWidth = gCtx.measureText(txt).width;
+
+  var padding = 10;
+  var rectWidth = textWidth + padding * 2;
+  var rectHeight = size + padding * 2;
+
+  var rectX = x - rectWidth / 2;
+  var rectY = y - rectHeight / 2;
+
+  gCtx.strokeStyle = "black";
+  gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+  renderMeme();
 }
 
-function downloadCanvas(elLink) {
-  const data = gElCanvas.toDataURL();
-  elLink.href = data;
+function renderMeme() {
+  return gMeme.lines.forEach((meme) => {
+    gCtx.strokeStyle = meme.color;
+    gCtx.fillStyle = meme.color;
+    gCtx.font = `${meme.size}px Arial`;
+    gCtx.fillText(meme.txt, meme.x, meme.y);
+    gCtx.strokeText(meme.txt, meme.x, meme.y);
+  });
 }
 
 function addLine() {
-  
   var { y } = gMeme.lines[gMeme.lines.length - 1];
   if (y > 350) {
     y = 350;
@@ -71,19 +86,41 @@ function addLine() {
 
   gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1;
   gMeme.lines.push({
-    txt: "",
+    txt: "Text",
     size: 20,
-    color: gCurrColor,
+    color: "white",
     x: 225,
     y: y + 50,
   });
-  console.log(gMeme);
   drawText("Text");
 }
 
-function getText(x, y) {
-  return gMeme.lines.forEach((meme) => {
-    gCtx.fillText(meme.txt, meme.x, meme.y);
-    gCtx.strokeText(meme.txt, meme.x, meme.y);
-  });
+function changeTextSize(textSign) {
+  var { size } = gMeme.lines[gCurrLine];
+  var adjustFontSize = 10;
+
+  if (textSign === "A+") {
+    size += adjustFontSize;
+    if (size > 100) {
+      size = 100;
+    }
+  } else if (textSign === "A-") {
+    size -= adjustFontSize;
+    if (size < 20) {
+      size = 20;
+    }
+  }
+  gMeme.lines[gCurrLine].size = size;
+  drawText();
+}
+
+function changeTextColor(textColor) {
+  gMeme.lines[gCurrLine].color = textColor;
+  // var { size } = gMeme.lines[gCurrLine];
+  drawText();
+}
+
+function downloadCanvas(elLink) {
+  const data = gElCanvas.toDataURL();
+  elLink.href = data;
 }

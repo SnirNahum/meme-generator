@@ -3,12 +3,10 @@ let gCtx;
 let currImage;
 let gCurrText;
 let images;
-let gCurrColor;
-let gCurrTextSize;
 let gCurrLine;
-// let textColor;
-var as = 4;
-const TOUCH_EVS = ["touchstart", "touchmove", "touchend"];
+
+var isDragging = false;
+var startX, startY;
 
 function onInit() {
   gCurrColor = "#ffffff";
@@ -26,44 +24,54 @@ function onInit() {
     gElCanvas.height =
       (currImage.naturalHeight / currImage.naturalWidth) * gElCanvas.width;
     gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
+
+    gElCanvas.addEventListener("mousedown", handleMouseDown);
+    gElCanvas.addEventListener("mousemove", handleMouseMove);
+    gElCanvas.addEventListener("mouseup", handleMouseUp);
   };
 }
 
+function handleMouseDown(e) {
+  var { x, y } = gMeme.lines[gCurrLine];
+  startX = e.clientX - gElCanvas.offsetLeft - x;
+  startY = e.clientY - gElCanvas.offsetTop - y;
+  isDragging = true;
+}
+
+function handleMouseMove(e) {
+  if (!isDragging) return;
+
+  var offsetX = e.offsetX;
+  var offsetY = e.offsetY;
+
+  gMeme.lines[gCurrLine].x = offsetX;
+  gMeme.lines[gCurrLine].y = offsetY;
+
+  drawText();
+}
+
+function handleMouseUp() {
+  isDragging = false;
+}
+
+
 function onDrawText(text) {
-  drawText(text);
+  gMeme.lines[gCurrLine].txt = text;
+  drawText();
 }
 
 function onChangeTextColor(textColor) {
-  gCurrColor = textColor + "";
-
-  gCtx.strokeStyle = gCurrColor;
-  gCtx.fillStyle = gCurrColor;
-
-  if (!gCurrText) return;
-  drawText(gCurrText);
+  changeTextColor(textColor);
 }
 
-function onChangeTextSize(textSize) {
-  console.log(gCurrTextSize);
-  if (!gCurrText) return;
-
-  var adjustFontSize = 10;
-  if (gCurrTextSize > 100) {
-    gCurrTextSize = 100;
-  }
-  if (textSize === "A+") {
-    gCurrTextSize += adjustFontSize;
-    gCtx.fontSize = gCurrTextSize;
-  } else if (textSize === "A-") {
-    if (gCurrTextSize <= 40) {
-      gCurrTextSize = 40;
-    }
-    gCurrTextSize -= adjustFontSize;
-  }
-  drawText(gCurrText);
+function onChangeTextSize(textSign) {
+  changeTextSize(textSign);
 }
 
 function onAddLine() {
+  var input = document.querySelector(".text");
+  input.value = "";
+  gCurrLine += 1;
   addLine();
 }
 
@@ -71,5 +79,6 @@ function onSwitchLines() {
   gCurrLine += 1;
   if (gCurrLine > gMeme.lines.length - 1) gCurrLine = 0;
   gMeme.selectedLineIdx = gCurrLine;
+
   drawText(gMeme.lines[gCurrLine].txt);
 }

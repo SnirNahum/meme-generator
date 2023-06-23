@@ -57,6 +57,7 @@ html {
 
 .image {
   width: 100px;
+  cursor: pointer;
 }
 
 .toolbar {
