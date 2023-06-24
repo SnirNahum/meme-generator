@@ -134,3 +134,14 @@ function removeCanvasBorder() {
   gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
   renderMeme();
 }
+
+function shareToWhatsApp() {
+  var text = "Check out this awesome Meme!";
+
+  var url = "https://snirnahum.github.io/meme-generator/";
+
+  var whatsappUrl =
+    "whatsapp://send?text=" + encodeURIComponent(text + " " + url);
+
+  window.open(whatsappUrl);
+}

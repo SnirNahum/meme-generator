@@ -5,9 +5,8 @@ function renderImages() {
   }
   var gridContainer = document.querySelector(".gallery-container");
   gridContainer.innerHTML = strHtml;
+  getFirstMeme();
 }
-
-
 
 function managePageDisplay(page) {
   var memes = document.querySelector(".main-content");

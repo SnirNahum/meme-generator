@@ -19,7 +19,6 @@ function onInit() {
   currImage = new Image();
   currImage.src = `${gImgs[1].url}`;
   renderImages();
-
   currImage.onload = () => {
     gElCanvas.height =
       (currImage.naturalHeight / currImage.naturalWidth) * gElCanvas.width;
@@ -42,7 +41,7 @@ function handleMouseClick(ev) {
 
   for (var i = 0; i < gMeme.lines.length; i++) {
     var line = gMeme.lines[i];
-    var { txt, size, x, y } = line;
+    var { x, y } = line;
 
     gCtx.font = `${line.size}px Arial`;
     var textWidth = gCtx.measureText(line.txt).width;
@@ -63,9 +62,8 @@ function handleMouseClick(ev) {
       gCurrLine = i;
       gMeme.selectedLineIdx = gCurrLine;
       drawText();
-      break
-    }
-    else {
+      break;
+    } else {
       removeCanvasBorder();
     }
   }
@@ -122,4 +120,20 @@ function onSwitchLines() {
   gMeme.selectedLineIdx = gCurrLine;
 
   drawText(gMeme.lines[gCurrLine].txt);
+}
+
+function getFirstMeme() {
+  gMeme = {
+    selectedImgId: `js/src/1.jpg`,
+    selectedLineIdx: 0,
+    lines: [
+      {
+        txt: "",
+        size: 30,
+        color: "white",
+        x: 225,
+        y: 50,
+      },
+    ],
+  };
 }
