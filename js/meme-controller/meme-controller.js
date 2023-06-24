@@ -28,7 +28,39 @@ function onInit() {
     gElCanvas.addEventListener("mousedown", handleMouseDown);
     gElCanvas.addEventListener("mousemove", handleMouseMove);
     gElCanvas.addEventListener("mouseup", handleMouseUp);
+    gElCanvas.addEventListener("click", handleMouseClick);
   };
+}
+function handleMouseClick(e) {
+  var offsetX = e.offsetX;
+  var offsetY = e.offsetY;
+
+  for (var i = 0; i < gMeme.lines.length; i++) {
+    var line = gMeme.lines[i];
+    var { x, y } = line;
+
+    gCtx.font = `${line.size}px Arial`;
+    var textWidth = gCtx.measureText(line.txt).width;
+    var textHeight = line.size;
+
+    var padding = 10;
+    var rectWidth = textWidth + padding * 2;
+    var rectHeight = textHeight + padding * 2;
+    var rectX = x - rectWidth / 2;
+    var rectY = y - rectHeight / 2;
+
+    if (
+      offsetX >= rectX &&
+      offsetX <= rectX + rectWidth &&
+      offsetY >= rectY &&
+      offsetY <= rectY + rectHeight
+    ) {
+      gCurrLine = i;
+      gMeme.selectedLineIdx = gCurrLine;
+
+      drawText();
+    }
+  }
 }
 
 function handleMouseDown(e) {
@@ -54,7 +86,6 @@ function handleMouseUp() {
   isDragging = false;
 }
 
-
 function onDrawText(text) {
   gMeme.lines[gCurrLine].txt = text;
   drawText();
@@ -70,7 +101,9 @@ function onChangeTextSize(textSign) {
 
 function onAddLine() {
   var input = document.querySelector(".text");
-  input.value = "";
+  gCurrText = gMeme.lines[gCurrLine].txt
+  input.value = gCurrText;
+  console.log(gCurrText);
   gCurrLine += 1;
   addLine();
 }
