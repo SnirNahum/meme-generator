@@ -135,13 +135,17 @@ function removeCanvasBorder() {
   renderMeme();
 }
 
-function shareToWhatsApp() {
-  var text = "Check out this awesome Meme!";
+function shareMemeWithWhatsApp() {
+  removeCanvasBorder();
+  const dataUrl = gElCanvas.toDataURL("image/jpeg");
 
-  var url = "https://snirnahum.github.io/meme-generator/";
+  const link = document.createElement("a");
+  link.href = dataUrl;
 
-  var whatsappUrl =
-    "whatsapp://send?text=" + encodeURIComponent(text + " " + url);
+  link.download = "meme.jpg";
 
-  window.open(whatsappUrl);
+  link.click();
+
+  const shareUrl = `whatsapp://send?text=${encodeURIComponent(dataUrl)}`;
+  window.open(shareUrl);
 }
