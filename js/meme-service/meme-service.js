@@ -50,20 +50,9 @@ function drawText() {
   gCtx.lineWidth = 2;
   gCtx.textAlign = "center";
   gCtx.textBaseline = "middle";
-
   gCtx.font = `${size}px Arial`;
 
-  var textWidth = gCtx.measureText(txt).width;
-
-  var padding = 10;
-  var rectWidth = textWidth + padding * 2;
-  var rectHeight = size + padding * 2;
-
-  var rectX = x - rectWidth / 2;
-  var rectY = y - rectHeight / 2;
-
-  gCtx.strokeStyle = "black";
-  gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+  canvasBorder(txt, size, x, y);
 
   renderMeme();
 }
@@ -116,11 +105,32 @@ function changeTextSize(textSign) {
 
 function changeTextColor(textColor) {
   gMeme.lines[gCurrLine].color = textColor;
-  // var { size } = gMeme.lines[gCurrLine];
   drawText();
 }
 
 function downloadCanvas(elLink) {
+  gCtx.clearRect(0, 0, 0, 0);
+  removeCanvasBorder();
   const data = gElCanvas.toDataURL();
   elLink.href = data;
+}
+
+function canvasBorder(txt, size, x, y) {
+  var textWidth = gCtx.measureText(txt).width;
+
+  var padding = 10;
+  var rectWidth = textWidth + padding * 2;
+  var rectHeight = size + padding * 2;
+
+  var rectX = x - rectWidth / 2;
+  var rectY = y - rectHeight / 2;
+
+  gCtx.strokeStyle = "black";
+  gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+}
+
+function removeCanvasBorder() {
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+  gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
+  renderMeme();
 }

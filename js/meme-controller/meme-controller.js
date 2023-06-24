@@ -25,19 +25,24 @@ function onInit() {
       (currImage.naturalHeight / currImage.naturalWidth) * gElCanvas.width;
     gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
 
-    gElCanvas.addEventListener("mousedown", handleMouseDown);
-    gElCanvas.addEventListener("mousemove", handleMouseMove);
-    gElCanvas.addEventListener("mouseup", handleMouseUp);
-    gElCanvas.addEventListener("click", handleMouseClick);
+    addEvenetlisteners();
   };
 }
-function handleMouseClick(e) {
-  var offsetX = e.offsetX;
-  var offsetY = e.offsetY;
+
+function addEvenetlisteners() {
+  gElCanvas.addEventListener("mousedown", handleMouseDown);
+  gElCanvas.addEventListener("mousemove", handleMouseMove);
+  gElCanvas.addEventListener("mouseup", handleMouseUp);
+  gElCanvas.addEventListener("click", handleMouseClick);
+}
+
+function handleMouseClick(ev) {
+  var offsetX = ev.offsetX;
+  var offsetY = ev.offsetY;
 
   for (var i = 0; i < gMeme.lines.length; i++) {
     var line = gMeme.lines[i];
-    var { x, y } = line;
+    var { txt, size, x, y } = line;
 
     gCtx.font = `${line.size}px Arial`;
     var textWidth = gCtx.measureText(line.txt).width;
@@ -57,8 +62,11 @@ function handleMouseClick(e) {
     ) {
       gCurrLine = i;
       gMeme.selectedLineIdx = gCurrLine;
-
       drawText();
+      break
+    }
+    else {
+      removeCanvasBorder();
     }
   }
 }
@@ -101,7 +109,7 @@ function onChangeTextSize(textSign) {
 
 function onAddLine() {
   var input = document.querySelector(".text");
-  gCurrText = gMeme.lines[gCurrLine].txt
+  gCurrText = gMeme.lines[gCurrLine].txt;
   input.value = gCurrText;
   console.log(gCurrText);
   gCurrLine += 1;

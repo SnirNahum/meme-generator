@@ -9,7 +9,6 @@ html {
   height: 5em;
   align-items: center;
 
-  /* margin-top: 3em; */
 }
 .main-content {
   display: flex;
@@ -18,7 +17,6 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* grid-template-columns: 2fr 1fr; */
   gap: 2em;
 }
 .links-ul {
@@ -33,7 +31,6 @@ html {
   cursor: pointer;
 }
 .meme-canvas {
-  border: 2px solid green;
   justify-content: center;
 }
 
@@ -41,7 +38,6 @@ html {
   display: grid;
   align-content: center;
   gap: 10px;
-  /* align-content: start; */
 }
 
 .gallery-container {
