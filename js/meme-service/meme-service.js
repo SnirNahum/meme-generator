@@ -135,17 +135,3 @@ function removeCanvasBorder() {
   renderMeme();
 }
 
-function shareMemeWithWhatsApp() {
-  removeCanvasBorder();
-  const dataUrl = gElCanvas.toDataURL("image/jpeg");
-
-  const link = document.createElement("a");
-  link.href = dataUrl;
-
-  link.download = "meme.jpg";
-
-  link.click();
-
-  const shareUrl = `whatsapp://send?text=${encodeURIComponent(dataUrl)}`;
-  window.open(shareUrl);
-}

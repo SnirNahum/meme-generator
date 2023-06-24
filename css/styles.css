@@ -5,14 +5,11 @@ html {
 
 .header-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 0.7fr 1fr 1fr;
   height: 5em;
   align-items: center;
+}
 
-}
-.main-content {
-  display: flex;
-}
 .main-content-container {
   display: flex;
   flex-wrap: wrap;
@@ -34,12 +31,6 @@ html {
   justify-content: center;
 }
 
-.meme-toolbar {
-  display: grid;
-  align-content: center;
-  gap: 10px;
-}
-
 .gallery-container {
   display: grid;
   justify-content: center;
@@ -52,19 +43,63 @@ html {
 }
 
 .image {
-  width: 100px;
+  width: 100%;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.image:hover {
+  transform: scale(1.1);
 }
 
-.toolbar {
+.meme-toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+.button {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: #fcfcfd;
+  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%),
+    0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+  height: 48px;
+  padding: 0 32px;
+  font-size: 18px;
+  border-radius: 6px;
+  color: #36395a;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.button:hover {
+  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%),
+    0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+  transform: translateY(-2px);
+}
+.button:active {
+  box-shadow: inset 0px 3px 7px #d6d6e7;
+  transform: translateY(2px);
+}
+
+.button:hover {
+  background-color: #f3f4f6;
+  border-color: #1b1f2326;
+  transition-duration: 0.1s;
+}
+
+.button-text-color {
+  position: relative;
+}
+
+.button.button-text-color {
+  position: absolute;
+  width: 1.3em;
+  opacity: 0;
+}
+
+.fa-palette{
   font-size: 2em;
-  max-width: fit-content;
-  cursor: pointer;
-}
-
-.download-btn {
-  align-self: flex-end;
-}
-.toolbar-toolbar-a {
-  display: none;
 }

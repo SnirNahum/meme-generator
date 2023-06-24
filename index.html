@@ -14,38 +14,37 @@
         <div class="links links">
           <ul class="links links-ul">
             <li class="links-li memes" onclick="managePageDisplay(this)">Memes</li>
-            <li class="links-li gallery" onclick="managePageDisplay(this)">Gallery</a></li>
+            <li class="links-li gallery"  onclick="managePageDisplay(this)">Gallery</a></li>
             <li class="links-li memes" onclick="managePageDisplay(this)">About</li>
           </ul>
         </div>
       </div>
     </header>
-    <main class="main-content" style="display: none;">
+    <main class="main-content" style="display: block;">
       <div class="main-content-container">
         <canvas class="meme-canvas" height="450" width="450"></canvas>
         <div class="meme-toolbar">
-          <div class="input-container">
+
           <input type="text" class="text" placeholder="Enter text" oninput="onDrawText(this.value,0)" value="" />
-        </div>
+
         <button class="button add-line" onclick="onAddLine()">add line</button>
-        <button class="button switch-lines" onclick="onSwitchLines()">Switch lines</button>
-            <input oninput="onChangeTextColor(this.value)" type="color" name="form color-text"
-            value="#ffffff">
-            <input onclick="onChangeTextSize(this.value)" type="button" name="form color-text"
-            value="A+">
-            <input onclick="onChangeTextSize(this.value)" type="button" name="form color-text"
-            value="A-">
-          <a href="#"  onclick="downloadCanvas(this)" download="Meme"><button class="toolbar download-btn">Download</button></a>
-          <button onclick="shareMemeWithWhatsApp()">Share on WhatsApp</button>
 
+        <!-- <button class="button switch-lines" onclick="onSwitchLines()">Switch lines</button> -->
+        <label for="color-pallette">
+        <input class="button button-text-color" id="color-pallette" oninput="onChangeTextColor(this.value)" type="color" name="form-text-color" value="#ffffff"><i class="fa-solid fa-palette"></i>
+        </label>
 
-          
-        </div>
+            <button class="button button-text-size" onclick="onChangeTextSize(this.value)" type="button" name="form text-size"
+            value="A+">A+</button>
+
+            <button class="button button-text-size" onclick="onChangeTextSize(this.value)" type="button" name="form text-size"
+            value="A-">A-</button>
+            <button class="button download-btn" id="aaa"><a href="#" onclick="downloadCanvas(this)" download="Meme">Download</a></button>
+                    </div>
       </div>
 
     </main>
-    
-    <div class="gallery-page" style="display: block;">
+    <div class="gallery-page" style="display: none;">
       <div class="gallery-container"></div>
     </div>
       <section class="memes-page"></section>

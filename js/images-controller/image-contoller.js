@@ -26,3 +26,4 @@ function managePageDisplay(page) {
     gallery.style.display = "none";
   }
 }
+

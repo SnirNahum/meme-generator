@@ -69,19 +69,18 @@ function handleMouseClick(ev) {
   }
 }
 
-function handleMouseDown(e) {
+function handleMouseDown(ev) {
   var { x, y } = gMeme.lines[gCurrLine];
-  startX = e.clientX - gElCanvas.offsetLeft - x;
-  startY = e.clientY - gElCanvas.offsetTop - y;
+  startX = ev.clientX - gElCanvas.offsetLeft - x;
+  startY = ev.clientY - gElCanvas.offsetTop - y;
+
   isDragging = true;
 }
 
-function handleMouseMove(e) {
+function handleMouseMove(ev) {
   if (!isDragging) return;
-
-  var offsetX = e.offsetX;
-  var offsetY = e.offsetY;
-
+  var offsetX = ev.offsetX;
+  var offsetY = ev.offsetY;
   gMeme.lines[gCurrLine].x = offsetX;
   gMeme.lines[gCurrLine].y = offsetY;
 
