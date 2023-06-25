@@ -27,7 +27,7 @@ function getCurrMeme(image) {
     selectedLineIdx: 0,
     lines: [
       {
-        txt: "",
+        txt: "Text",
         size: 30,
         color: "white",
         x: 225,
@@ -43,7 +43,7 @@ function getCurrMeme(image) {
 function drawText() {
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
-  var { color, txt, size, x, y } = gMeme.lines[gCurrLine];
+  var { txt, size, x, y } = gMeme.lines[gCurrLine];
 
   gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
 
@@ -81,7 +81,7 @@ function addLine() {
     x: 225,
     y: y + 50,
   });
-  drawText("Text");
+  drawText("");
 }
 
 function changeTextSize(textSign) {
@@ -134,4 +134,3 @@ function removeCanvasBorder() {
   gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
   renderMeme();
 }
-

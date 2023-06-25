@@ -100,7 +100,8 @@ function onChangeTextColor(textColor) {
   changeTextColor(textColor);
 }
 
-function onChangeTextSize(textSign) {
+function onChangeTextSize(elTextSize) {
+  var textSign = elTextSize.dataset.val
   changeTextSize(textSign);
 }
 

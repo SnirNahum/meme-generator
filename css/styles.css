@@ -2,11 +2,11 @@ html {
   background-color: #5a6970;
   color: rgb(211, 223, 221);
 }
-
 .header-container {
   display: grid;
   grid-template-columns: 0.7fr 1fr 1fr;
   height: 5em;
+  padding: 0 4em 0em 4em;
   align-items: center;
 }
 
@@ -16,17 +16,20 @@ html {
   justify-content: center;
   gap: 2em;
 }
+
 .links-ul {
   display: flex;
   justify-content: space-evenly;
   padding: 0;
 }
+
 .links-li,
 .logo {
   text-decoration: none;
   list-style: none;
   cursor: pointer;
 }
+
 .meme-canvas {
   justify-content: center;
 }
@@ -38,7 +41,6 @@ html {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 10px;
   margin: 0 auto;
-
   max-width: 500px;
 }
 
@@ -47,59 +49,71 @@ html {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
+
 .image:hover {
   transform: scale(1.1);
 }
 
 .meme-toolbar {
   display: grid;
-  grid-template-columns: 1fr;
-  align-content: center;
-  justify-items: center;
+  grid-template-rows: repeat(4, 5em);
+  grid-template-columns: repeat(2, 5em);
+  grid-template-areas:
+    "input input"
+    "color-palette  add-line"
+    "increase-btn decrease-btn"
+    "download-btn download-btn";
+  grid-auto-flow: column;
+  align-items: center;
   gap: 10px;
 }
 
+.meme-text {
+  height: 3.5em;
+  border-radius: 1.3em;
+  border: none;
+  grid-area: input; 
+  grid-column: span 2; 
+  width: 213px; 
+}
+
+.increase-btn {
+  grid-area: increase-btn;
+}
+
+.decrease-btn {
+  grid-area: decrease-btn;
+}
+
+.download-btn {
+  grid-area: download-btn;
+}
+
+.color-palette {
+  grid-area: color-palette;
+}
+
+.add-line {
+  grid-area: add-line;
+}
+
 .button {
-  display: inline-block;
-  outline: 0;
-  border: 0;
   cursor: pointer;
-  background: #fcfcfd;
-  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%),
-    0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
-  height: 48px;
-  padding: 0 32px;
-  font-size: 18px;
-  border-radius: 6px;
-  color: #36395a;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-.button:hover {
-  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%),
-    0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
-  transform: translateY(-2px);
-}
-.button:active {
-  box-shadow: inset 0px 3px 7px #d6d6e7;
-  transform: translateY(2px);
+  transition: transform 0.15s ease;
 }
 
 .button:hover {
-  background-color: #f3f4f6;
+  transform: translateY(-5px);
   border-color: #1b1f2326;
-  transition-duration: 0.1s;
+  transition-duration: 0.2s;
 }
 
-.button-text-color {
-  position: relative;
+.button:active {
+  transform: translateY(2px);
 }
 
 .button.button-text-color {
   position: absolute;
   width: 1.3em;
   opacity: 0;
-}
-
-.fa-palette{
-  font-size: 2em;
 }

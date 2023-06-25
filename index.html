@@ -20,31 +20,26 @@
         </div>
       </div>
     </header>
-    <main class="main-content" style="display: block;">
+    <main class="main-content" style="display: none;">
       <div class="main-content-container">
         <canvas class="meme-canvas" height="450" width="450"></canvas>
         <div class="meme-toolbar">
-
-          <input type="text" class="text" placeholder="Enter text" oninput="onDrawText(this.value,0)" value="" />
-
-        <button class="button add-line" onclick="onAddLine()">add line</button>
-
-        <!-- <button class="button switch-lines" onclick="onSwitchLines()">Switch lines</button> -->
-        <label for="color-pallette">
-        <input class="button button-text-color" id="color-pallette" oninput="onChangeTextColor(this.value)" type="color" name="form-text-color" value="#ffffff"><i class="fa-solid fa-palette"></i>
-        </label>
-
-            <button class="button button-text-size" onclick="onChangeTextSize(this.value)" type="button" name="form text-size"
-            value="A+">A+</button>
-
-            <button class="button button-text-size" onclick="onChangeTextSize(this.value)" type="button" name="form text-size"
-            value="A-">A-</button>
-            <button class="button download-btn" id="aaa"><a href="#" onclick="downloadCanvas(this)" download="Meme">Download</a></button>
-                    </div>
+          <input type="text" class="meme-text" placeholder="Enter text" oninput="onDrawText(this.value,0)" value="" />
+          <img src="js/src/buttons/add-line.png" class="button add-line" onclick="onAddLine()" title="add line" alt="add line image">
+          <label for="color-palette">
+            <img src="js/src/buttons/color-pallette.png" class="button button-color-palette" alt="color-palette-image">
+            <input class="button button-text-color" id="color-palette" oninput="onChangeTextColor(this.value)" type="color" name="form-text-color" value="#ffffff">
+          </label>
+          <img src="js/src/buttons/A+.png" class="button increase-btn" onclick="onChangeTextSize(this)" data-val="A+" title="Increase text size" alt="increaseTextSize">
+          <img src="js/src/buttons/A-.png" class="button decrease-btn" onclick="onChangeTextSize(this)" data-val="A-" title="Decrease text size" alt="decreaseTextSize">
+          <a href="#" onclick="downloadCanvas(this)" download="Meme">
+            <img src="js/src/buttons/download-button.png" class="download-btn" alt="Download meme">
+          </a>
+        </div>
+        
       </div>
-
     </main>
-    <div class="gallery-page" style="display: none;">
+    <div class="gallery-page" style="display: block;">
       <div class="gallery-container"></div>
     </div>
       <section class="memes-page"></section>
