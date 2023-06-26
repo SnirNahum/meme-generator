@@ -1,37 +1,68 @@
 html {
   background-color: #5a6970;
   color: rgb(211, 223, 221);
-}
-.header-container {
-  display: grid;
-  grid-template-columns: 0.7fr 1fr 1fr;
-  height: 5em;
-  padding: 0 4em 0em 4em;
-  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-.main-content-container {
+.header {
+  padding: 1em;
+  margin: 3em;
+}
+
+.header-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  margin-left: 0;
 }
 
 .links-ul {
   display: flex;
-  justify-content: space-evenly;
-  padding: 0;
-}
-
-.links-li,
-.logo {
-  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
   list-style: none;
-  cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
-.meme-canvas {
+.links-li {
+  margin: 0 1em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: #333;
+  font-size: 1.5em;
+}
+
+.links-li:hover {
+  color: #f9e8e8;
+}
+
+.links-li.active {
+  color: #f9e8e8;
+  font-weight: bold;
+}
+
+.main-layout {
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.main-content-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2em;
+  max-width: 80em;
+  margin: 0 auto;
 }
 
 .gallery-container {
@@ -56,27 +87,29 @@ html {
 
 .meme-toolbar {
   display: grid;
-  grid-template-rows: repeat(4, 5em);
+  grid-template-rows: repeat(5, 5em);
   grid-template-columns: repeat(2, 5em);
   grid-template-areas:
     "input input"
     "color-palette  add-line"
-    "increase-btn decrease-btn"
-    "download-btn download-btn";
-  grid-auto-flow: column;
-  align-items: center;
-  gap: 10px;
+    "decrease-btn increase-btn"
+    "download-btn download-btn"
+    "image-upload image-upload";
 }
 
 .meme-text {
   height: 3.5em;
   border-radius: 1.3em;
   border: none;
-  grid-area: input; 
-  grid-column: span 2; 
-  width: 213px; 
+  grid-area: input;
+  grid-column: span 2;
+  width: 213px;
 }
 
+.image-upload {
+  grid-area: image-upload;
+  max-height: 50px;
+}
 .increase-btn {
   grid-area: increase-btn;
 }
@@ -111,9 +144,34 @@ html {
 .button:active {
   transform: translateY(2px);
 }
+.aaa {
+  grid-area: aaa;
+}
 
 .button.button-text-color {
   position: absolute;
   width: 1.3em;
   opacity: 0;
+}
+
+@media screen and (max-width: 1150px) {
+  .main-content-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    margin-bottom: 1em;
+  }
+
+  .links-ul {
+    margin-top: 1em;
+    justify-content: center;
+  }
 }

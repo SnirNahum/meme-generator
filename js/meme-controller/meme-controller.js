@@ -2,7 +2,6 @@ let gElCanvas;
 let gCtx;
 let currImage;
 let gCurrText;
-let images;
 let gCurrLine;
 
 var isDragging = false;
@@ -23,6 +22,7 @@ function onInit() {
     gElCanvas.height =
       (currImage.naturalHeight / currImage.naturalWidth) * gElCanvas.width;
     gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
+    document.getElementById('image-upload').addEventListener('change', handleImageUpload);
 
     addEvenetlisteners();
   };
@@ -33,6 +33,26 @@ function addEvenetlisteners() {
   gElCanvas.addEventListener("mousemove", handleMouseMove);
   gElCanvas.addEventListener("mouseup", handleMouseUp);
   gElCanvas.addEventListener("click", handleMouseClick);
+  // inputElement.addEventListener('change', handleImageUpload);
+
+}
+function handleImageUpload(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+  
+  reader.onload = function(e) {
+    currImage.onload = function() {
+      gElCanvas.height =
+        (currImage.naturalHeight / currImage.naturalWidth) * gElCanvas.width;
+      gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
+
+      // Call the drawText function to draw the existing text on the canvas
+      drawText();
+    };
+    currImage.src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
 }
 
 function handleMouseClick(ev) {
@@ -75,6 +95,7 @@ function handleMouseDown(ev) {
   startY = ev.clientY - gElCanvas.offsetTop - y;
 
   isDragging = true;
+  gElCanvas.style.cursor = "grabbing";
 }
 
 function handleMouseMove(ev) {
@@ -83,12 +104,12 @@ function handleMouseMove(ev) {
   var offsetY = ev.offsetY;
   gMeme.lines[gCurrLine].x = offsetX;
   gMeme.lines[gCurrLine].y = offsetY;
-
   drawText();
 }
 
 function handleMouseUp() {
   isDragging = false;
+  gElCanvas.style.cursor = "default";
 }
 
 function onDrawText(text) {
@@ -96,20 +117,20 @@ function onDrawText(text) {
   drawText();
 }
 
+
 function onChangeTextColor(textColor) {
   changeTextColor(textColor);
 }
 
 function onChangeTextSize(elTextSize) {
-  var textSign = elTextSize.dataset.val
+  var textSign = elTextSize.dataset.val;
   changeTextSize(textSign);
 }
 
 function onAddLine() {
-  var input = document.querySelector(".text");
+  var input = document.querySelector(".add-line");
   gCurrText = gMeme.lines[gCurrLine].txt;
   input.value = gCurrText;
-  console.log(gCurrText);
   gCurrLine += 1;
   addLine();
 }

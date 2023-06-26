@@ -43,18 +43,23 @@ function getCurrMeme(image) {
 function drawText() {
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
-  var { txt, size, x, y } = gMeme.lines[gCurrLine];
-
+  // Draw the image on the canvas
   gCtx.drawImage(currImage, 0, 0, gElCanvas.width, gElCanvas.height);
 
-  gCtx.lineWidth = 2;
-  gCtx.textAlign = "center";
-  gCtx.textBaseline = "middle";
-  gCtx.font = `${size}px Arial`;
+  // Loop through the lines in the gMeme object and draw each line of text
+  for (let i = 0; i < gMeme.lines.length; i++) {
+    const line = gMeme.lines[i];
+    const { x, y, size, txt } = line;
 
-  canvasBorder(txt, size, x, y);
+    // Set the font properties
+    gCtx.font = `${size}px Arial`;
+    gCtx.fillStyle = line.color;
+    gCtx.textAlign = 'center';
+    gCtx.textBaseline = 'middle';
 
-  renderMeme();
+    // Draw the text on the canvas
+    gCtx.fillText(txt, x, y);
+  }
 }
 
 function renderMeme() {

@@ -10,12 +10,12 @@
   <body onload="onInit()">
     <header class="header">
       <div class="header-container">
-        <div class="logo" onclick="managePageDisplay(this)">Logo</div>
-        <div class="links links">
-          <ul class="links links-ul">
-            <li class="links-li memes" onclick="managePageDisplay(this)">Memes</li>
-            <li class="links-li gallery"  onclick="managePageDisplay(this)">Gallery</a></li>
-            <li class="links-li memes" onclick="managePageDisplay(this)">About</li>
+        <div class="logo" onclick="managePageDisplay(this)">Memes-Generator</div>
+        <div class="links">
+          <ul class="links-ul">
+            <li class="links-li" onclick="managePageDisplay(this)">Memes</li>
+            <li class="links-li" onclick="managePageDisplay(this)">Gallery</li>
+            <li class="links-li" onclick="managePageDisplay(this)">About</li>
           </ul>
         </div>
       </div>
@@ -27,15 +27,19 @@
           <input type="text" class="meme-text" placeholder="Enter text" oninput="onDrawText(this.value,0)" value="" />
           <img src="js/src/buttons/add-line.png" class="button add-line" onclick="onAddLine()" title="add line" alt="add line image">
           <label for="color-palette">
-            <img src="js/src/buttons/color-pallette.png" class="button button-color-palette" alt="color-palette-image">
-            <input class="button button-text-color" id="color-palette" oninput="onChangeTextColor(this.value)" type="color" name="form-text-color" value="#ffffff">
+            <img src="js/src/buttons/color-pallette.png" class="button button-color-palette" title="Download button" alt="color-palette-image">
+            <input class="button button-text-color" id="color-palette" oninput="onChangeTextColor(this.value)" type="color" name="form-text-color"  value="#ffffff">
           </label>
-          <img src="js/src/buttons/A+.png" class="button increase-btn" onclick="onChangeTextSize(this)" data-val="A+" title="Increase text size" alt="increaseTextSize">
+          <input type="file" id="image-upload" class="button image-upload" accept="image/*">
+
           <img src="js/src/buttons/A-.png" class="button decrease-btn" onclick="onChangeTextSize(this)" data-val="A-" title="Decrease text size" alt="decreaseTextSize">
+          <img src="js/src/buttons/A+.png" class="button increase-btn" onclick="onChangeTextSize(this)" data-val="A+" title="Increase text size" alt="increaseTextSize">
           <a href="#" onclick="downloadCanvas(this)" download="Meme">
-            <img src="js/src/buttons/download-button.png" class="download-btn" alt="Download meme">
+            <img src="js/src/buttons/download-button.png" class="button download-btn" title="Download button" alt="Download meme">
           </a>
         </div>
+        
+
         
       </div>
     </main>
@@ -55,3 +59,5 @@
     <script src="js/meme-controller/untils/untils.js"></script>
   </body>
 </html>
+
+
