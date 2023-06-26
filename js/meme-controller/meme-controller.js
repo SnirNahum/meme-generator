@@ -113,6 +113,7 @@ function handleMouseUp() {
 }
 
 function onDrawText(text) {
+  if (!text) return
   gMeme.lines[gCurrLine].txt = text;
   drawText();
 }
